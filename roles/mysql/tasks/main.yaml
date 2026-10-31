@@ -12,15 +12,13 @@
     state: started
     enabled: yes
 
-- name: check root password is already set
-  command: mysql  -e 'SELECT 1'
-  register: mysql_root_check
-  ignore_errors: true
-  changed_when: false
-
-- name: print output
-  debug:
-    msg: "{{ mysql_root_check }}"
+- name: setup mysql root password
+  ansible.mysql.mysql_user:
+    name: root
+    host: localhost
+    password: "{{ mysql_root_password }}"
+    check_implicit_admin: true
+    state: present
 
 # - name: setup root password
 #   command: mysql_secure_installation --set-root-pass {{ MYSQL_ROOT_PASSWORD }}
