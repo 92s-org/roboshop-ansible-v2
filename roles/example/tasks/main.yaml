@@ -1,0 +1,3 @@
+- name: this dependent role will run first before main roles runs
+  debug:
+    msg: "Hi from example role"
