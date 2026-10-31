@@ -18,6 +18,10 @@
   ignore_errors: true
   changed_when: false
 
+- name: print output
+  debug:
+    msg: "{{ mysql_root_check }}"
+
 # - name: setup root password
 #   command: mysql_secure_installation --set-root-pass {{ MYSQL_ROOT_PASSWORD }}
 #   # when: mysql_root_check.rc != 0
