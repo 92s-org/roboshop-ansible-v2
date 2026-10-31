@@ -12,6 +12,11 @@
     state: started
     enabled: yes
 
+- name: install python dependencies
+  pip:
+    name: PyMySQL
+    executable: pip3.9
+
 - name: setup mysql root password
   community.mysql.mysql_user:
     name: root
