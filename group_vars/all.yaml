@@ -13,6 +13,6 @@ CART_HOST: cart.daws92s.store
 SHIPPING_HOST: shipping.daws92s.store
 PAYMENT_HOST: payment.daws92s.store
 
-MYSQL_ROOT_PASSWORD: RoboShop@1
+mysql_root_password: RoboShop@1
 RABBITMQ_USER: roboshop
 RABBITMQ_PASSWORD: roboshop123
