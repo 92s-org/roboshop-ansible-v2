@@ -1,5 +1,5 @@
-ansible_user: ec2-user
-ansible_password: DevOps321
+ansible_user: "{{ valut_ansible_user }}"
+ansible_password: "{{ valut_ansible_password }}"
 
 artifact_url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts
 
@@ -13,6 +13,8 @@ CART_HOST: cart.daws92s.store
 SHIPPING_HOST: shipping.daws92s.store
 PAYMENT_HOST: payment.daws92s.store
 
-mysql_root_password: RoboShop@1
-RABBITMQ_USER: roboshop
-RABBITMQ_PASSWORD: roboshop123
+mysql_root_password: "{{ vault_mysql_root_password }}"
+RABBITMQ_USER: "{{ vault_rabbitmq_user }}"
+RABBITMQ_PASSWORD: "{{ vault_rabbitmq_password }}"
+SHIPPING_DB_PASSWORD: "{{ vault_shipping_db_password }}"
+
