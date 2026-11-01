@@ -1,5 +1,5 @@
-ansible_user: "{{ valut_ansible_user }}"
-ansible_password: "{{ valut_ansible_password }}"
+ansible_user: "{{ vault_ansible_user }}"
+ansible_password: "{{ vault_ansible_password }}"
 
 artifact_url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts
 
