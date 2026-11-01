@@ -1,0 +1,20 @@
+- name: application setup
+  include_role:
+    name: common
+    tasks_from: app-setup
+
+- name: application setup
+  include_role:
+    name: common
+    tasks_from: nodejs
+
+- name: systemd setup
+  include_role:
+    name: common
+    tasks_from: systemd-setup
+
+- name: enable and start cart
+  service:
+    name: cart
+    state: restarted
+    enabled: yes
