@@ -1,7 +1,7 @@
 ansible_user: ec2-user
 ansible_password: DevOps321
 
-ARTIFACT_URL: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts
+artifact_url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts
 
 MONGODB_HOST: mongodb.daws92s.store
 REDIS_HOST: redis.daws92s.store
