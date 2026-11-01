@@ -2,3 +2,8 @@
   include_role:
     name: common
     tasks_from: app-setup
+
+- name: application setup
+  include_role:
+    name: common
+    tasks_from: nodejs
