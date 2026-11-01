@@ -17,8 +17,27 @@
   copy:
     src: mongo.repo
     dest: /etc/yum.repos.d/mongo.repo
-    
+
 - name: install mongodb client
   package:
     name: mongodb-mongosh
     state: present
+
+- name: count products in catalogue db
+  shell: mongosh --host "{{ MONGODB_HOST }}" --quiet --eval 'db.getSiblingDB("catalogue").products.countDocuments()'
+  register: product_count
+  changed_when: false
+  tags:
+  - mongodb
+
+- name: print product count
+  debug:
+    msg: "products in catalogue db: {{ product_count.stdout }}"
+  tags:
+  - mongodb
+
+- name: load master data (only once)
+  shell: mongosh --host "{{ MONGODB_HOST }}" </app/db/master-data.js
+  when: product_count.stdout | int == 0
+  tags:
+  - mongodb
