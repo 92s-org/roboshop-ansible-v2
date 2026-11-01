@@ -20,13 +20,13 @@
 - name: setup mysql root password
   community.mysql.mysql_user:
     name: root
-    host: localhost
+    host: '%'
     plugin: caching_sha2_password
     plugin_auth_string: "{{ mysql_root_password }}"
+    priv: '*.*:ALL,GRANT'
     login_user: root
     login_password: "{{ mysql_root_password }}"
     login_unix_socket: /var/lib/mysql/mysql.sock
-    check_implicit_admin: true
     state: present
   no_log: true
 
