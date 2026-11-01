@@ -7,3 +7,18 @@
   include_role:
     name: common
     tasks_from: nodejs
+
+- name: systemd setup
+  include_role:
+    name: common
+    tasks_from: systemd-setup
+
+- name: copy mongodb repo
+  copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+    
+- name: install mongodb client
+  package:
+    name: mongodb-mongosh
+    state: present
