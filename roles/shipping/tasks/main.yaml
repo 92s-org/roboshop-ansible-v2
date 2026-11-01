@@ -1,0 +1,32 @@
+- name: application setup
+  include_role:
+    name: common
+    tasks_from: app-setup
+
+- name: application setup
+  include_role:
+    name: common
+    tasks_from: nodejs
+
+- name: systemd setup
+  include_role:
+    name: common
+    tasks_from: systemd-setup
+
+- name: check cities data exists
+  command: mysql -h {{ MYSQL_HOST }} -uroot -p{{ MYSQL_ROOT_PASSWORD }} -N -e "SELECT COUNT(*) FROM cities.cities"
+  register: cities_count
+  ignore_errors: true
+
+- name: load master data (about 60 MB, takes a minute)
+  shell: mysql -h {{ MYSQL_HOST }} -uroot -p{{ MYSQL_ROOT_PASSWORD }} < /app/db/master-data.sql
+  when: cities_count.rc != 0 or cities_count.stdout | int == 0
+
+- name: create shipping app user
+  shell: mysql -h {{ MYSQL_HOST }} -uroot -p{{ MYSQL_ROOT_PASSWORD }} < /app/db/app-user.sql
+
+- name: enable and start shipping
+  service:
+    name: shipping
+    state: restarted
+    enabled: yes

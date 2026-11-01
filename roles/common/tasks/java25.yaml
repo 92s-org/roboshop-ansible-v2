@@ -1,0 +1,17 @@
+- name: install maven
+  package:
+    name:
+    - maven
+    - java-25-openjdk-devel
+    - maven-openjdk25
+    state: present
+
+- name: install dependencies
+  command: mvn clean package
+  args:
+    chdir: /app
+    
+- name: move shipping jar
+  command: mv target/shipping-1.0.jar shipping.jar 
+  args:
+    chdir: /app
