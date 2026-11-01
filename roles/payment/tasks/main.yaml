@@ -1,0 +1,20 @@
+- name: application setup
+  include_role:
+    name: common
+    tasks_from: app-setup
+
+- name: application setup
+  include_role:
+    name: common
+    tasks_from: python
+
+- name: systemd setup
+  include_role:
+    name: common
+    tasks_from: systemd-setup
+
+- name: enable and start payment
+  service:
+    name: payment
+    state: restarted
+    enabled: yes
