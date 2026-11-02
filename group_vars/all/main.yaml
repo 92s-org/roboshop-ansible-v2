@@ -1,5 +1,5 @@
-ansible_user: "{{ lookup('amazon.aws.secretsmanager_secret', 'expense/ssh_creds', region='us-east-1') | from_json | json_query('ansible_user') }}"
-ansible_password: "{{ lookup('amazon.aws.secretsmanager_secret', 'expense/ssh_creds', region='us-east-1') | from_json | json_query('ansible_password') }}"
+ansible_user: "{{ lookup('amazon.aws.aws_secret', 'expense/ssh_creds', region='us-east-1') | from_json | json_query('ansible_user') }}"
+ansible_password: "{{ lookup('amazon.aws.aws_secret', 'expense/ssh_creds', region='us-east-1') | from_json | json_query('ansible_password') }}"
 
 artifact_url: https://raw.githubusercontent.com/daws-92s/roboshop-documentation/refs/heads/main/artifacts
 
